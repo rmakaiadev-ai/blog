@@ -29,6 +29,9 @@ class Post
     #[ORM\Column]
     private ?bool $isFeatured = null;
 
+    #[ORM\ManyToOne(inversedBy: 'posts')]
+    private ?Category $category = null;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -90,6 +93,18 @@ class Post
     public function setIsFeatured(bool $isFeatured): static
     {
         $this->isFeatured = $isFeatured;
+
+        return $this;
+    }
+
+    public function getCategory(): ?Category
+    {
+        return $this->category;
+    }
+
+    public function setCategory(?Category $category): static
+    {
+        $this->category = $category;
 
         return $this;
     }
